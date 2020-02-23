@@ -9,14 +9,29 @@
 import SwiftUI
 
 struct LineView: View {
-    let height: CGFloat = 44.0
+   private let height: CGFloat = 44.0
+    
+    private let viewModel: LineViewViewModel
+    init(withViewModel aModel: LineViewViewModel) {
+        self.viewModel = aModel
+    }
+    
     var body: some View {
         HStack {
-            Text("10%")
-            ZStack {
+            Text("\(viewModel.slab.totalPercentage)%")
+            sleepingBarView
+            .background(Color.white)
+        }
+        .padding()
+    }
+    
+    var sleepingBarView: some View {
+        if let scorePoint = viewModel.slab.scorePoint {
+          return  AnyView(
+            ZStack(alignment: .leading) {
                 graphLine
-                .background(Color.red)
-                HStack(alignment: .center, spacing: 1) {
+                    .background(Color.fromInt(viewModel.slab.end))
+                HStack {
                     Triangle()
                     .fill(Color.white)
                         .frame(width: 1, height: height, alignment: .trailing)
@@ -24,20 +39,22 @@ struct LineView: View {
                         arrowView
                         .background(Color.white)
                         .shadow(color: Color.gray.opacity(0.7), radius: 0, x: 8, y: 8)
-                        Text("399")
+                        Text("\(scorePoint)")
                             .fontWeight(.heavy)
                     }
                 }
                 .background(Color.white)
-            }
-            .background(Color.white)
+            .offset(x: 125)
+            })
+        } else {
+          return  AnyView(graphLine
+            .background(Color.fromInt(viewModel.slab.end)))
         }
-        .padding()
     }
     
     var graphLine: some View {
         HStack {
-            Text("300-699")
+            Text("\(viewModel.slab.start)-\(viewModel.slab.end)")
                 .fontWeight(.regular)
                 .foregroundColor(Color.white)
                 .frame(height: height)
@@ -49,7 +66,7 @@ struct LineView: View {
     
     var arrowView: some View {
         HStack {
-            Text("399")
+            Text("\(viewModel.slab.scorePoint ?? 0)")
                 .fontWeight(.bold)
             .foregroundColor(.clear)
                 .frame(width: 55, height: height)
@@ -70,8 +87,8 @@ struct Triangle: Shape {
     }
 }
 
-struct LineView_Previews: PreviewProvider {
-    static var previews: some View {
-        LineView()
-    }
-}
+//struct LineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LineView(withViewModel: <#LineViewViewModel#>)
+//    }
+//}
