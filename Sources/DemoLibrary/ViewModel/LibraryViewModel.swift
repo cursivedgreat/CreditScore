@@ -10,8 +10,8 @@ import Foundation
 import SwiftUI
 
 
-final class LibraryViewModel: ObservableObject {
-    @Published private var creditScore = CreditScore()
+final public class LibraryViewModel: ObservableObject {
+    @Published var creditScore = CreditScore()
     @Published var isLandscape: Bool
     
     required init(withResponse score: CreditScore, inLandscape landscape: Bool) {

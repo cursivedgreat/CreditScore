@@ -7,8 +7,11 @@
 //
 
 import Foundation
+#if !os(macOS)
 import UIKit
+#endif
 
+@available(OSX 10.15, *)
 class LineViewViewModel: ObservableObject, Identifiable {
     let slab: Slab
     private let height: CGFloat = 44.0

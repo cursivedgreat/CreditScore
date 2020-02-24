@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct DemoLibrary: View {
+public struct DemoLibrary: View {
     
     @ObservedObject var viewModel: LibraryViewModel
     
-    init(withViewModel viewModel: LibraryViewModel) {
+   public init(withViewModel viewModel: LibraryViewModel) {
         self.viewModel = viewModel
     }
     
-    var body: some View {
+    public var body: some View {
         List {
             completePieGraphView
             completeSleepingGraphView

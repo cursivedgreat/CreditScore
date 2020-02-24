@@ -12,27 +12,27 @@ import SwiftUI
 // MARK: - Response
 public struct CreditScore: Codable {
     public init() {}
-    var user: User?
-    var servey: Servey?
+    public var user: User?
+    public var servey: Servey?
 }
 
 // MARK: - Servey
 public struct Servey: Codable {
-    var slabs = [Slab]()
+    public var slabs = [Slab]()
 }
 
 // MARK: - Slab
 public struct Slab: Codable {
-    var scorePoint: Int?
-    let start, end, totalPercentage: Int
+    public var scorePoint: Int?
+    public let start, end, totalPercentage: Int
     
-    mutating func color() -> Color {
+    public mutating func color() -> Color {
         return .green
     }
 }
 
 // MARK: - User
 public struct User: Codable {
-    let score: Int
-    let date: TimeInterval
+    public let score: Int
+    public let date: TimeInterval
 }

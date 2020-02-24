@@ -6,7 +6,7 @@ final class DemoLibraryTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(DemoLibrary().text, "Hello, World!")
+//        XCTAssertEqual(DemoLibrary(withViewModel: LibraryViewModel(withResponse: CreditScore(), inLandscape: fa)).text, "Hello, World!")
     }
 
     static var allTests = [
