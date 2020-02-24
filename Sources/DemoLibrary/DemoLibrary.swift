@@ -3,8 +3,6 @@ import SwiftUI
 struct DemoLibrary: View {
     
     @ObservedObject var viewModel: LibraryViewModel
-    @Environment(\.verticalSizeClass) var sizeClass
-    @State var isPortrait = UIApplication.shared.statusBarOrientation.isLandscape
     
     init(withViewModel viewModel: LibraryViewModel) {
         self.viewModel = viewModel
@@ -12,29 +10,26 @@ struct DemoLibrary: View {
     
     var body: some View {
         List {
-            completeDiagram
+            completePieGraphView
+            completeSleepingGraphView
         }
     }
     
     private var completeDiagram: some View {
-        return  AnyView(
-            VStack {
-                completePieGraphView
-                completeSleepingGraphView
-        })
-//        if isPortrait {
-//            return  AnyView(
-//                VStack {
-//                    completePieGraphView
-//                    completeSleepingGraphView
-//            })
-//        } else {
-//            return AnyView(
-//                HStack {
-//                    completePieGraphView
-//                    completeSleepingGraphView
-//            })
-//        }
+        if viewModel.isLandscape {
+            return AnyView(
+                HStack {
+                    completePieGraphView
+                    completeSleepingGraphView
+            })
+        } else {
+            return  AnyView(
+                VStack {
+                    completePieGraphView
+                    completeSleepingGraphView
+            })
+
+        }
     }
     
     private var completePieGraphView: some View {
@@ -53,6 +48,8 @@ struct DemoLibrary: View {
     private var completeSleepingGraphView: some View {
         let slabs = self.viewModel.getBarViewData()
         return VStack {
+            Text("Where You Stand")
+                .font(.title)
             ForEach(slabs, id: \.start) { slab in
                 LineView(withViewModel: LineViewViewModel(withSlab: slab))
             }
@@ -63,18 +60,7 @@ struct DemoLibrary: View {
 
 struct DemoLibrary_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        DemoLibrary(withViewModel: LibraryViewModel(withResponse: CreditScore()))
+        DemoLibrary(withViewModel: LibraryViewModel(withResponse: CreditScore(), inLandscape: false))
         
     }
-}
-
-
-func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-    coordinator.animate(alongsideTransition: { context in
-        if UIApplication.shared.statusBarOrientation.isLandscape {
-            // activate landscape changes
-        } else {
-            // activate portrait changes
-        }
-    })
 }

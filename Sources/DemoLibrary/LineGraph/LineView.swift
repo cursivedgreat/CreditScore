@@ -30,7 +30,7 @@ struct LineView: View {
           return  AnyView(
             ZStack(alignment: .leading) {
                 graphLine
-                    .background(Color.fromInt(viewModel.slab.end))
+                    .background(Color.fromInt(viewModel.slab.start))
                 HStack {
                     Triangle()
                     .fill(Color.white)
@@ -48,7 +48,7 @@ struct LineView: View {
             })
         } else {
           return  AnyView(graphLine
-            .background(Color.fromInt(viewModel.slab.end)))
+            .background(Color.fromInt(viewModel.slab.start)))
         }
     }
     

@@ -17,7 +17,7 @@ public struct CreditScore: Codable {
 
 // MARK: - Servey
 public struct Servey: Codable {
-    let slabs = [Slab]()
+    var slabs = [Slab]()
 }
 
 // MARK: - Slab

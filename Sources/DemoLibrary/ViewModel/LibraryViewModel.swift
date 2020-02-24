@@ -12,9 +12,12 @@ import SwiftUI
 
 final class LibraryViewModel: ObservableObject {
     @Published private var creditScore = CreditScore()
+    @Published var isLandscape: Bool
     
-    required init(withResponse score: CreditScore) {
+    required init(withResponse score: CreditScore, inLandscape landscape: Bool) {
         self.creditScore = score
+        self.isLandscape = landscape
+        print("Currently isLandscape \(landscape)")
     }
     
     func getLeftViewData() -> (startValue: Int, targetValue: Int, userScore: Int, valuationDate: String) {
