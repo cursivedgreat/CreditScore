@@ -43,8 +43,3 @@ struct PieChart: View {
     }
 }
 
-//struct PieChart_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PieChart(withScore: 200, scoreColor: .red, pieWidth: 10)
-//    }
-//}

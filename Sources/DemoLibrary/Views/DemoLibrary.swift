@@ -57,10 +57,3 @@ public struct DemoLibrary: View {
     }
 }
 
-
-struct DemoLibrary_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        DemoLibrary(withViewModel: LibraryViewModel(withResponse: CreditScore(), inLandscape: false))
-        
-    }
-}

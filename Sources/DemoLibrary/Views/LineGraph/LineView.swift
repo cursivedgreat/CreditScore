@@ -87,8 +87,3 @@ struct Triangle: Shape {
     }
 }
 
-//struct LineView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LineView(withViewModel: <#LineViewViewModel#>)
-//    }
-//}

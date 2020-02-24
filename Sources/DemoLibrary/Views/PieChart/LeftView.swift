@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import UIKit
 import SwiftUI
 
 
@@ -40,15 +39,3 @@ struct LeftView: View {
     }
 }
 
-//struct LeftView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ForEach(["iPhone SE", "iPhone 11 Pro Max"], id: \.self) { deviceName in
-//            LeftView(withStartValue: 300,
-//                     targetValue: 900,
-//                     userScore: 822)
-//                .frame(width: 200, height: 200)
-//                .previewDisplayName(deviceName)
-//        }
-//    }
-//
-//}
