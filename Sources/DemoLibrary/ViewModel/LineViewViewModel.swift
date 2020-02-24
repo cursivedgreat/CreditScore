@@ -7,9 +7,7 @@
 //
 
 import Foundation
-#if !os(macOS)
-import UIKit
-#endif
+import SwiftUI
 
 @available(OSX 10.15, *)
 class LineViewViewModel: ObservableObject, Identifiable {

@@ -20,29 +20,34 @@ final public class LibraryViewModel: ObservableObject {
         print("Currently isLandscape \(landscape)")
     }
     
-    func getLeftViewData() -> (startValue: Int, targetValue: Int, userScore: Int, valuationDate: String) {
+    func getLeftViewData() -> (startValue: Int, targetValue: Int, userScore: Int, valuationDate: String, bgDelta: Double) {
         var sValue = 900
         var tValue = 0
-        
         var date = "Unknown"
-        let score = creditScore.user?.score ?? 0
+        var delta: Double = 0
+        
         if let t = creditScore.user?.date {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy"
             date = formatter.string(from: Date(timeIntervalSince1970: t))
         }
         
-        if let slabs = creditScore.servey?.slabs {
-            for slab in slabs {
-                if slab.start < sValue {
-                    sValue = slab.start
-                }
-                if slab.end > tValue {
-                    tValue = slab.end
-                }
+        let score = creditScore.user?.score ?? 0
+        let slabs = self.creditScore.servey?.slabs ?? []
+        
+        for (index, slab) in slabs.enumerated() {
+            if slab.start < sValue {
+                sValue = slab.start
+            }
+            if slab.end > tValue {
+                tValue = slab.end
+            }
+            
+            if slab.start < score && score < slab.end {
+                delta = Double(index+1)/Double(slabs.count)
             }
         }
-        return (sValue, tValue, score, date)
+        return (sValue, tValue, score, date, delta)
     }
     
     func getBarViewData() -> [Slab] {

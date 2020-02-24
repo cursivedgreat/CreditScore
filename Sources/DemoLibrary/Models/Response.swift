@@ -23,12 +23,11 @@ public struct Servey: Codable {
 
 // MARK: - Slab
 public struct Slab: Codable {
-    public var scorePoint: Int?
     public let start, end, totalPercentage: Int
     
-    public mutating func color() -> Color {
-        return .green
-    }
+    //For internal consumption
+    var scorePoint: Int?
+    var colorDelta: Double?
 }
 
 // MARK: - User

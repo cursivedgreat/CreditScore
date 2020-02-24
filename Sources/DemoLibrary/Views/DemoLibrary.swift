@@ -37,7 +37,7 @@ public struct DemoLibrary: View {
         let leftDigramViewModel = LeftViewViewModel(
             startScore: values.startValue,
             targetScore: values.targetValue,
-            userScore: values.userScore)
+            userScore: values.userScore, bgDelta: values.bgDelta)
         return VStack {
             LeftView(withViewModel: leftDigramViewModel)
             Text("As of \(values.valuationDate).")
@@ -50,8 +50,9 @@ public struct DemoLibrary: View {
         return VStack {
             Text("Where You Stand")
                 .font(.title)
-            ForEach(slabs, id: \.start) { slab in
-                LineView(withViewModel: LineViewViewModel(withSlab: slab))
+            ForEach(0..<slabs.count) { i in
+                LineView(withViewModel: LineViewViewModel(withSlab: slabs[i]),
+                         bgColor: Color.fromDelta(Double(i)/Double(slabs.count)))
             }
         }
     }

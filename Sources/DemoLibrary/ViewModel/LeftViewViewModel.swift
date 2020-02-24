@@ -15,14 +15,17 @@ class LeftViewViewModel {
     let target: Int
     let start: Int
     let score: Int
+    let bgDelta: Double
     
     init(startScore sValue: Int,
          targetScore tValue: Int,
-         userScore score: Int
+         userScore score: Int,
+         bgDelta delta: Double
     ) {
         self.target = tValue
         self.start = sValue
         self.score = score
+        self.bgDelta = delta
     }
     
     func scoreAngle() -> Angle {

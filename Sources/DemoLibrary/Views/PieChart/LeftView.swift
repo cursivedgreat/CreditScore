@@ -12,6 +12,7 @@ import SwiftUI
 
 struct LeftView: View {
     private var viewModel: LeftViewViewModel
+   
     
     init(withViewModel aViewModel: LeftViewViewModel) {
         self.viewModel = aViewModel
@@ -21,7 +22,7 @@ struct LeftView: View {
         ZStack{
             VStack(alignment: .center) {
                 HStack {
-                    PieChart(withScore: viewModel.scoreAngle(), scoreColor: Color.fromInt(viewModel.score), pieWidth: CGFloat(20))
+                    PieChart(withScore: viewModel.scoreAngle(), scoreColor: Color.fromDelta(viewModel.bgDelta), pieWidth: CGFloat(20))
                     Text("\(viewModel.target)")
                         .offset(x: -2*viewModel.margin, y: CGFloat(12))
                 }
