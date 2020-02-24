@@ -17,4 +17,8 @@ class LineViewViewModel: ObservableObject, Identifiable {
     init(withSlab aSlab: Slab) {
         self.slab = aSlab
     }
+    
+    func bgColor() -> Color {
+        return Color.fromDelta(slab.colorDelta ?? 1)
+    }
 }

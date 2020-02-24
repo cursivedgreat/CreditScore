@@ -51,14 +51,18 @@ final public class LibraryViewModel: ObservableObject {
     }
     
     func getBarViewData() -> [Slab] {
-        let userScore = creditScore.user?.score ?? 0
-        return (self.creditScore.servey?.slabs ?? [])
-            .map { slab in
-                var tSlab = slab
-                if tSlab.start < userScore && userScore < tSlab.end {
-                    tSlab.scorePoint = userScore
-                }
-                return tSlab
+        let score = creditScore.user?.score ?? 0
+        let responseSlabs = self.creditScore.servey?.slabs ?? []
+        var slabs = [Slab]()
+        
+        for (index, slab) in responseSlabs.enumerated() {
+            var tSlab = slab
+            tSlab.colorDelta = Double(index+1)/Double(responseSlabs.count)
+            if slab.start < score && score < slab.end {
+                tSlab.scorePoint = score
+            }
+            slabs.append(tSlab)
         }
+        return slabs
     }
 }

@@ -50,10 +50,11 @@ public struct DemoLibrary: View {
         return VStack {
             Text("Where You Stand")
                 .font(.title)
-            ForEach(0..<slabs.count) { i in
-                LineView(withViewModel: LineViewViewModel(withSlab: slabs[i]),
-                         bgColor: Color.fromDelta(Double(i)/Double(slabs.count)))
+            
+            ForEach(slabs, id: \.start) { slab in
+                LineView(withViewModel: LineViewViewModel(withSlab: slab))
             }
+
         }
     }
 }

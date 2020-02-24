@@ -12,10 +12,8 @@ struct LineView: View {
    private let height: CGFloat = 44.0
     
     private let viewModel: LineViewViewModel
-    private let bgColor: Color
-    init(withViewModel aModel: LineViewViewModel, bgColor color: Color) {
+    init(withViewModel aModel: LineViewViewModel) {
         self.viewModel = aModel
-        self.bgColor = color
     }
     
     var body: some View {
@@ -32,7 +30,7 @@ struct LineView: View {
           return  AnyView(
             ZStack(alignment: .leading) {
                 graphLine
-                    .background(bgColor)
+                    .background(viewModel.bgColor())
                 HStack {
                     Triangle()
                     .fill(Color.white)
@@ -50,7 +48,7 @@ struct LineView: View {
             })
         } else {
           return  AnyView(graphLine
-            .background(bgColor))
+            .background(viewModel.bgColor()))
         }
     }
     
