@@ -21,4 +21,15 @@ class LineViewViewModel: ObservableObject, Identifiable {
     func bgColor() -> Color {
         return Color.fromDelta(slab.colorDelta ?? 1)
     }
+    
+    func getArrowOffset(forWidth width: CGFloat) -> CGFloat {
+        var offsetX:CGFloat = 0.0
+        if let scorePoint = slab.scorePoint {
+            // -width/2 as view lies in zStack
+            offsetX =  (CGFloat(scorePoint - slab.start)/CGFloat(slab.end-slab.start) * width )-width/2
+        }
+        print("offset is \(offsetX)")
+        
+        return offsetX
+    }
 }

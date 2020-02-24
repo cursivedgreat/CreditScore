@@ -31,20 +31,23 @@ struct LineView: View {
             ZStack(alignment: .leading) {
                 graphLine
                     .background(viewModel.bgColor())
-                HStack {
-                    Triangle()
-                    .fill(Color.white)
-                        .frame(width: 1, height: height, alignment: .trailing)
-                    ZStack {
-                        arrowView
-                        .background(Color.white)
-                        .shadow(color: Color.gray.opacity(0.7), radius: 0, x: 8, y: 8)
-                        Text("\(scorePoint)")
-                            .fontWeight(.heavy)
+                GeometryReader { geometry in
+                    HStack {
+                        Triangle()
+                        .fill(Color.white)
+                            .frame(width: 1, height: self.height, alignment: .trailing)
+                       
+                        ZStack {
+                            self.arrowView
+                            .background(Color.white)
+                            .shadow(color: Color.gray.opacity(0.7), radius: 0, x: 8, y: 8)
+                            Text("\(scorePoint)")
+                                .fontWeight(.heavy)
+                        }
                     }
+                    .background(Color.white)
+                    .offset(x: self.viewModel.getArrowOffset(forWidth: geometry.size.width))
                 }
-                .background(Color.white)
-            .offset(x: 125)
             })
         } else {
           return  AnyView(graphLine
