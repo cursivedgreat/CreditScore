@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - Response
 public struct CreditScore: Codable {
+    public init() {}
     var user: User?
     var servey: Servey?
 }
